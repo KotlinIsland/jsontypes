@@ -27,6 +27,8 @@ def generate_types(file_name: str, body: object) -> None:
             return generate_list_type(value)
         else:
             it = type(value).__name__
+            if it == "NoneType":
+                it = "None"
             return it, it
 
     def generate_dict_type(name: Optional[str], dictionary: Dict[str, object], root: bool = False) -> Tuple[str, str]:
