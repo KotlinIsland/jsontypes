@@ -77,9 +77,10 @@ class {title_case(name)}(Protocol):
 {protocol_typestr}"""
 
     def generate_list_type(the_list: List[object]) -> Tuple[str, str]:
-        list_types = set(map(lambda x: generate_type(None, x)[0], the_list))
-        proc_list_types = set(map(lambda x: generate_type(None, x)[1], the_list))
-        if len(list_types) > 1:
+        all_types = {generate_type(None, it) for it in the_list}
+        list_types = {it[0] for it in all_types}
+        proc_list_types = {it[1] for it in all_types}
+        if len(all_types) > 1:
             typestr = "Union[" + ", ".join(list_types) + "]"
             proc_typestr = "Union[" + ", ".join(proc_list_types) + "]"
         else:
