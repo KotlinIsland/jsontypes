@@ -120,5 +120,5 @@ if __name__ == "__main__":
     gen_protocols = args.protocols
     typeddicts = args.typeddicts
     if not gen_protocols and not typeddicts:
-        gen_protocols = typeddicts = True
+        typeddicts = True
     generate_types(file_path.name, json.loads(file_path.read_text()))
